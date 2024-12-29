@@ -1,0 +1,1 @@
+Suppose `n` indicates the scale of the problem, and `m` is the dimension of weights each item has. The constraint of each dimension is fixed to 1. The `heuristics` function takes as input a `prize` of shape (n,), a `weight` of shape (n, m), and returns `heuristics` of shape (n,). `heuristics[i]` indicates how promising it is to include item i in the solution.

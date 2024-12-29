@@ -1,0 +1,5 @@
+_target_: utils.llm_client.openai.OpenAIClient
+
+model: gpt-4o-mini # LLM model
+temperature: 1.0  # temperature for chat completion
+api_key: "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"

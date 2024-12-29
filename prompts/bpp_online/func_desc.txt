@@ -1,0 +1,1 @@
+The priority function inputs an float number representing tht current item size and an array of bins_remain_cap which means the remaining capacity of each bin. The function returns a priority score for each bin. The bin with the highest priority score will be selected for the item.

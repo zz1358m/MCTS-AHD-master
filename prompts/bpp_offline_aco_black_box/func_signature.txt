@@ -1,0 +1,1 @@
+def heuristics(node_attr: np.ndarray, node_constraint: int) -> np.ndarray:
