@@ -42,3 +42,7 @@ Change parameter $\lambda_0$ in <a href="source/mcts.py">source/mcts.py</a>
 set cfg/config.yaml and run main.py for heuristic evaluations.
 
 **If want to run several evaluations simultaneously, please create multiple environments, including copied problems and prompts, and a copied cfg/problems with changing the problem name** (See tsp_constructive_copy for reference)
+
+### Report Runs
+
+We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework is in [google drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing), and runs under the ACO framework is in [google drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing)
