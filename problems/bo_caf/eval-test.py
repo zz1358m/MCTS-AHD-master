@@ -20,9 +20,9 @@ import sys
 import warnings
 
 try:
-    from gpt2 import utility_v2 as utility
+    from gpt import utility_v2 as utility
 except:
-    from gpt2 import utility
+    from gpt import utility
 warnings.filterwarnings('ignore', category=BadInitialCandidatesWarning)
 warnings.filterwarnings('ignore', category=RuntimeWarning)
 warnings.filterwarnings("ignore", category=OptimizationWarning)
