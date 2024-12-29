@@ -8,7 +8,7 @@
 MCTS-AHD employs a Monte Carlo Tree for the representation of heuristic evolution and uses LLM-assisted Monte Carlo Tree Search for heuristic evolution
 ![process.png](process.png)
 
-To visually demonstrate the workflow of MCTS-AHD and its ability to escape from local optima and conduct a comprehensive exploration, we provide two examples of heuristic function evolution in two tasks, as shown in Figure G. For example, in designing heuristics with a step-bystep construction framework for TSP, MCTS-AHD can expand potential child nodes from nodes (e.g., MCTS node with ”Expansion: t=611”) that are not among the top 10 optimal ones (the performance range of the top 10 optimal heuristics is the yellow shade), and ultimately reach the best heuristic.
+To visually demonstrate the workflow of MCTS-AHD and its ability to escape from local optima and conduct a comprehensive exploration, we provide two examples of heuristic function evolution in two tasks, as shown in Figure G. For example, in designing heuristics with a step-by-step construction framework for TSP, MCTS-AHD can expand potential child nodes from nodes (e.g., MCTS node with ``Expansion: t=611``) that are not among the top 10 optimal ones (the performance range of the top 10 optimal heuristics is the yellow shade), and ultimately reach the best heuristic.
 
 ![example.png](example.png)
 Thanks to the implementations of [EoH](https://github.com/FeiLiu36/EoH) and [ReEvo](https://github.com/ai4co/reevo).
