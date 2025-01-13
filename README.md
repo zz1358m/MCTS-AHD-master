@@ -33,7 +33,7 @@ Other Complex Tasks
 * Bayesian Optimization (BO):
   * Cost-aware Function Design in Active Learning **(Please set botorch according to the requirements.txt to ensure the results of the report are generated)**
 
-MCTS do not need a high-performance seed function. By Implementing eval.py and evaluation prompts in cfgs, MCTS-AHD can be applied to more scenarios with effectiveness easily.
+MCTS do not need a high-performance seed function (The seed function texts in /prompts records the seed functions used for the report results of Funsearch, ReEvo and HSEvo in our paper). By Implementing eval.py and evaluation prompts in cfgs, MCTS-AHD can be applied to more scenarios with effectiveness easily.
 
 
 ### Run
