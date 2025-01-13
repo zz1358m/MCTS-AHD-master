@@ -5,7 +5,8 @@
 
 
 
-MCTS-AHD employs a Monte Carlo Tree for the representation of heuristic evolution and uses LLM-assisted Monte Carlo Tree Search for heuristic evolution
+MCTS-AHD employs a Monte Carlo Tree Search (MCTS) for LLM-based heuristic evolution while preserving all LLM-generated heuristics in a tree structure. MCTS helps to comprehensively explore the space of heuristic functions and maintain the focus on better-performing ones. Moreover, as a structured data structure, the MCTS tree records the evolution history of heuristics, thus providing organized samples for heuristic evolution and LLMs' reasoning.
+
 ![process.png](process.png)
 
 To visually demonstrate the workflow of MCTS-AHD and its ability to escape from local optima and conduct a comprehensive exploration, we provide two examples of heuristic function evolution in two tasks, as shown in Figure G. For example, in designing heuristics with a step-by-step construction framework for TSP, MCTS-AHD can expand potential child nodes from nodes (e.g., MCTS node with ``Expansion: t=611``) that are not among the top 10 optimal ones (the performance range of the top 10 optimal heuristics is the yellow shade), and ultimately reach the best heuristic.
