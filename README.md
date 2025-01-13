@@ -12,7 +12,6 @@ MCTS-AHD employs a Monte Carlo Tree Search (MCTS) for LLM-based heuristic evolut
 To visually demonstrate the workflow of MCTS-AHD and its ability to escape from local optima and conduct a comprehensive exploration, we provide two examples of heuristic function evolution in two tasks, as shown in Figure G. For example, in designing heuristics with a step-by-step construction framework for TSP, MCTS-AHD can expand potential child nodes from nodes (e.g., MCTS node with ``Expansion: t=611``) that are not among the top 10 optimal ones (the performance range of the top 10 optimal heuristics is the yellow shade), and ultimately reach the best heuristic.
 
 ![example.png](example.png)
-Thanks to the implementations of [EoH](https://github.com/FeiLiu36/EoH) and [ReEvo](https://github.com/ai4co/reevo). Thanks to co-authors and Professor Wee Sun Lee for suggestions.
 
 ### Available tasks (Totally 15 scenarios provided):
 NP-hard CO Problems as Tasks
@@ -47,3 +46,8 @@ set cfg/config.yaml and run main.py for heuristic evaluations.
 ### Report Runs
 
 We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework is in [google drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing), and runs under the ACO framework is in [google drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing)
+
+### Acknowledge
+
+Thanks to the implementations of [EoH](https://github.com/FeiLiu36/EoH) and [ReEvo](https://github.com/ai4co/reevo). Thanks to co-authors and Professor Wee Sun Lee for suggestions.
+
