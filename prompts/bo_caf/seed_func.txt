@@ -1,5 +1,5 @@
 import torch
-
+# Actually useless for results reported in our paper. EoH and MCTS-AHD do not need the seed function.
 def utility(train_x, train_y, best_x, best_y, test_x, mean_test_y, std_test_y, cost_test_y, budget_used, budget_total):
     utility_value = torch.ones_like(cost_test_y)
     
