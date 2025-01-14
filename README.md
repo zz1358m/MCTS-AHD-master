@@ -51,3 +51,6 @@ We also provide all the reported runs in the paper in outputs/. The runs under t
 
 Thanks to the implementations of [EoH](https://github.com/FeiLiu36/EoH) and [ReEvo](https://github.com/ai4co/reevo). Thanks to co-authors and Professor Wee Sun Lee for suggestions.
 
+### Help
+
+Please contact Zhi Zheng at [zhi.zheng@u.nus.edu](zhi.zheng@u.nus.edu) for issues.
