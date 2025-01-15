@@ -31,7 +31,7 @@ NP-hard CO Problems as Tasks
   
 Other Complex Tasks
 * Bayesian Optimization (BO):
-  * Cost-aware Function Design in Active Learning **(Please set botorch according to the requirements.txt to ensure the results of the report are generated)**
+  * Cost-aware Function Design in Active Learning **(Please set botorch according to the requirements.txt for the report results)**
 
 MCTS do not need a high-performance seed function (The seed function texts in /prompts records the seed functions used for the report results of Funsearch, ReEvo and HSEvo in our paper). By Implementing eval.py and evaluation prompts in cfgs, MCTS-AHD can be applied to more scenarios with effectiveness easily.
 
@@ -41,7 +41,7 @@ Change parameter $\lambda_0$ in <a href="source/mcts.py">source/mcts.py</a>
 
 set cfg/config.yaml and run main.py for heuristic evaluations.
 
-**If want to run several evaluations simultaneously, please create multiple environments, including copied problems and prompts, and a copied cfg/problems with changing the problem name** (See tsp_constructive_copy for reference)
+**If you want to run several evaluations simultaneously, please create multiple environments, including copied problems and prompts, and a copied cfg file in cfg/problems with changing the problem name** (See tsp_constructive_copy for reference)
 
 ### Report Runs
 
