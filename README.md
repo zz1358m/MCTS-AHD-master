@@ -33,7 +33,7 @@ Other Complex Tasks
 * Bayesian Optimization (BO):
   * Cost-aware Function Design in Active Learning **(Please set botorch according to the requirements.txt for the report results)**
 
-MCTS do not need a high-performance seed function (The seed function texts in /prompts records the seed functions used for the report results of Funsearch, ReEvo and HSEvo in our paper). By Implementing eval.py and evaluation prompts in cfgs, MCTS-AHD can be applied to more scenarios with effectiveness easily.
+MCTS-AHD does not need a high-performance seed function (The seed function texts in /prompts records the seed functions used for the report results of Funsearch, ReEvo, and HSEvo in our paper). By Implementing eval.py and evaluation prompts in cfgs, MCTS-AHD can be applied to more scenarios with effectiveness easily.
 
 
 ### Run
@@ -45,7 +45,7 @@ set cfg/config.yaml and run main.py for heuristic evaluations.
 
 ### Report Runs
 
-We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework is in [google drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing), and runs under the ACO framework is in [google drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing)
+We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework are in [Google Drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing) and runs under the ACO framework is in [Google Drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing)
 
 ### Acknowledge
 
