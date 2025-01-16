@@ -12,13 +12,11 @@ class AHD:
         self.problem = Problem(cfg, root_dir)
 
         self.paras = Paras() 
-        self.paras.set_paras(method = "eoh",
-                             # problem = "Not used", # Not used
-                             # llm_api_endpoint = "api.openai.com",
+        self.paras.set_paras(method = "mcts_ahd",
                              init_size = self.cfg.init_pop_size,
                              pop_size = self.cfg.pop_size,
                              llm_model = client,
-                             ec_fe_max = self.cfg.max_fe,  # total evals = 2 * pop_size + n_pop * 4 * pop_size; for pop_size = 10, n_pop = 5, total evals = 2 * 10 + 4 * 5 * 10 = 220
+                             ec_fe_max = self.cfg.max_fe,
                              exp_output_path = f"{workdir}/",
                              exp_debug_mode = False,
                              eva_timeout=cfg.timeout)
