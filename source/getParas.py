@@ -47,25 +47,7 @@ class Paras():
         #####################
         self.eva_timeout = 60
         self.eva_numba_decorator = False
-
-    def set_parallel(self):
-        import multiprocessing
-        num_processes = multiprocessing.cpu_count()
-        if self.exp_n_proc == -1 or self.exp_n_proc > num_processes:
-            self.exp_n_proc = num_processes
-            print(f"Set the number of proc to {num_processes} .")
-
-    def set_ec(self):
-        pass
-
-    def set_evaluation(self):
-        # Initialize evaluation settings
-        if self.problem == 'bp_online':
-            self.eva_timeout = 20
-            self.eva_numba_decorator = True
-        elif self.problem == 'tsp_construct':
-            self.eva_timeout = 20
-
+        
     def set_paras(self, *args, **kwargs):
 
         # Map paras
