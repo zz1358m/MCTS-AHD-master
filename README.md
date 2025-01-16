@@ -1,4 +1,4 @@
-## Implementation of Paper: Monte Carlo Tree Search for Comprehensive Exploration in LLM-Based Automatic Heuristic Design [Arxiv preprint](https://www.overleaf.com/project/6784a5a609043868bf754a66)
+## Implementation of Paper: Monte Carlo Tree Search for Comprehensive Exploration in LLM-Based Automatic Heuristic Design [Arxiv preprint](https://arxiv.org/pdf/2501.08603)
 
 ### MCTS-AHD
 
