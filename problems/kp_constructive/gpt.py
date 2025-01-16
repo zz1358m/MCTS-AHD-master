@@ -1,40 +1,37 @@
 import numpy as np
-def select_next_item(remaining_capacity: int, weights: np.ndarray, values: np.ndarray) -> int:
-    """Enhanced version of `select_next_item_v1`, prioritizing items by value-to-weight ratio 
-    and enforcing a minimum threshold for value.
-    """
 
-    # Create a mask to identify which items can fit into the remaining capacity
-    valid_mask = weights <= remaining_capacity
 
-    # If no items can fit, return -1
-    if not np.any(valid_mask):
+def select_next_item(remaining_capacity, weights, values):
+    capacity_threshold = 0.3
+    value_weight_ratios = values / weights
+    sorted_indices = np.argsort(-value_weight_ratios)
+
+    eligible_items = []
+    for i in sorted_indices:
+        if weights[i] <= remaining_capacity:
+            score = values[i] + (values[i] / weights[i] * 5)
+            if weights[i] > remaining_capacity * capacity_threshold:
+                score -= (weights[i] - remaining_capacity * capacity_threshold) * 0.1
+            eligible_items.append((i, score))
+
+    if not eligible_items:
         return -1
 
-    # Extract valid weights and values
-    valid_weights = weights[valid_mask]
-    valid_values = values[valid_mask]
+    eligible_items.sort(key=lambda x: -x[1])
+    best_combination_value = -float('inf')
+    result = -1
 
-    # Calculate value-to-weight ratios
-    ratios = np.divide(valid_values, valid_weights, out=np.zeros_like(valid_values), where=valid_weights != 0)
+    for i, score in eligible_items:
+        current_value = values[i]
+        current_weight = weights[i]
 
-    # Set a minimum value threshold to avoid items with negligible value
-    min_value_threshold = np.percentile(valid_values, 20)  # Keeping only the top 20% of items by value
-    high_value_mask = valid_values >= min_value_threshold
+        for j in eligible_items:
+            if j[0] != i and current_weight + weights[j[0]] <= remaining_capacity:
+                current_value += values[j[0]]
+                current_weight += weights[j[0]]
 
-    # Combine ratios with a focus on high-value items
-    overall_scores = np.zeros_like(ratios)
-    overall_scores[high_value_mask] = ratios[high_value_mask] + valid_values[
-        high_value_mask] * 0.1  # Slightly favor high-value items
+        if current_value > best_combination_value:
+            best_combination_value = current_value
+            result = i
 
-    # If no high-value items, fallback to ratios
-    if np.sum(overall_scores) == 0:
-        overall_scores = ratios
-
-    # Return the index of the item with the maximum overall score
-    best_index_in_mask = np.nanargmax(overall_scores)
-
-    # Map back to the original index
-    best_fit_index = np.where(valid_mask)[0][best_index_in_mask]
-
-    return best_fit_index
+    return result
