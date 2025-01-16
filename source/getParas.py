@@ -1,4 +1,3 @@
-
 import os
 
 
@@ -7,7 +6,7 @@ class Paras():
         #####################
         ### General settings  ###
         #####################
-        self.method = 'eoh'
+        self.method = 'mcts_ahd'
         self.problem = 'tsp_construct'
         self.management = 'pop_greedy'
         self.selection = 'prob_rank'
@@ -15,13 +14,13 @@ class Paras():
         #####################
         ###  EC settings  ###
         #####################
-        self.pop_size = 20 # number of evaluations, default = 20
-        self.init_size = 4 # number of evaluations, default = 4
-        self.ec_fe_max = 100 # number of evaluations, default = 100
-        self.ec_operators = ['e1','e2','m1','m2','s1'] # evolution operators: ['e1','e2','m1','m2'], default = ['e1','m1']
-        self.ec_m = 2  # number of parents for 'e1' and 'e2' operators, default = 2
-        self.ec_operator_weights = [0, 1, 2, 2, 1]  # weights for operators, i.e., the probability of use the operator in each iteration, default = [1,1,1,1]
-        
+        self.pop_size = 10  # Size of Elite set E, default = 10
+        self.init_size = 4  # Number of initial nodes N_I, default = 4
+        self.ec_fe_max = 1000  # Number of evaluations, default = 1000
+        self.ec_operators = ['e1', 'e2', 'm1', 'm2', 's1']
+        self.ec_m = 2
+        self.ec_operator_weights = [0, 1, 2, 2, 1]  # weights for operators default = [0,1,k,k,1], default = [0,1,2,2,1]
+
         #####################
         ### LLM settings  ###
         #####################
@@ -30,7 +29,6 @@ class Paras():
         self.llm_api_endpoint = "chat.openai.com"
         self.llm_api_key = "Not used"  # Not used
         self.llm_model = "gpt-3.5-turbo-1106"
-
 
         #####################
         ###  Exp settings  ###
@@ -43,13 +41,12 @@ class Paras():
         self.exp_continue_id = 0
         self.exp_continue_path = "./results/pops/population_generation_0.json"
         self.exp_n_proc = -1
-        
+
         #####################
         ###  Evaluation settings  ###
         #####################
-        self.eva_timeout = 30
+        self.eva_timeout = 60
         self.eva_numba_decorator = False
-
 
     def set_parallel(self):
         import multiprocessing
@@ -57,42 +54,38 @@ class Paras():
         if self.exp_n_proc == -1 or self.exp_n_proc > num_processes:
             self.exp_n_proc = num_processes
             print(f"Set the number of proc to {num_processes} .")
-    
-    def set_ec(self):    
+
+    def set_ec(self):
         pass
-                    
-            
+
     def set_evaluation(self):
         # Initialize evaluation settings
         if self.problem == 'bp_online':
             self.eva_timeout = 20
-            self.eva_numba_decorator  = True
+            self.eva_numba_decorator = True
         elif self.problem == 'tsp_construct':
             self.eva_timeout = 20
-                
+
     def set_paras(self, *args, **kwargs):
-        
+
         # Map paras
         for key, value in kwargs.items():
             if hasattr(self, key):
                 setattr(self, key, value)
-              
+
         # Identify and set parallel 
         # self.set_parallel()
-        
+
         # Initialize method and ec settings
         # self.set_ec()
-        
+
         # Initialize evaluation settings
         # self.set_evaluation()
 
         # assert self.llm_api_key!="XXX", "Please set the environment variable `OPENAI_API_KEY`"
 
 
-
-
 if __name__ == "__main__":
-
     # Create an instance of the Paras class
     paras_instance = Paras()
 
@@ -102,7 +95,4 @@ if __name__ == "__main__":
     # Accessing the updated parameters
     print(paras_instance.llm_use_local)  # Output: True
     print(paras_instance.llm_local_url)  # Output: http://example.com
-    print(paras_instance.ec_pop_size)    # Output: 8
-            
-            
-            
+    print(paras_instance.ec_pop_size)  # Output: 8
