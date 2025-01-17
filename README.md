@@ -44,7 +44,9 @@ set cfg/config.yaml and run main.py for heuristic evaluations.
 
 ### Report Runs
 
-We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework are in [Google Drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing) and runs under the ACO framework is in [Google Drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing)
+We also provide all the reported runs in the paper in outputs/. The runs under the step-by-step construction framework are in [Google Drive](https://drive.google.com/file/d/1mWBiWwi4u9FBMXVxOTfZVuvdMSrX50af/view?usp=sharing) and MCTS-AHD runs under the ACO framework is in [Google Drive](https://drive.google.com/file/d/1UhiSlNP6crQvtZfeNEXGFWTI0B1e2yq-/view?usp=sharing).
+
+Moreover, the ``gpt.py`` for each problem in this repository contains a leading heuristic function designed by MCTS-AHD.
 
 ### Acknowledge
 
