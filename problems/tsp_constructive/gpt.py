@@ -1,24 +1,42 @@
 def select_next_node(current_node, destination_node, unvisited_nodes, distance_matrix):
-    if not unvisited_nodes:
-        return None
-
     next_node = None
-    min_score = float('inf')
-    total_unvisited_distance = sum(distance_matrix[current_node][node] for node in unvisited_nodes)
+    best_combined_score = float('inf')
 
-    # Improved decay factor inspired by No.1 algorithm
-    decay_factor = 0.5 - (0.1 / max(1, len(unvisited_nodes)))
+    # Compute the central node of unvisited nodes
+    center_node = min(unvisited_nodes, key=lambda x: sum(distance_matrix[node][x] for node in unvisited_nodes))
+
+    # Dynamic weights based on the number of remaining nodes
+    num_unvisited = len(unvisited_nodes)
+    immediate_weight = 0.7 if num_unvisited > 3 else 0.5
+    future_weight = 0.3 if num_unvisited > 3 else 0.5
 
     for node in unvisited_nodes:
-        local_distance = distance_matrix[current_node][node]
-        global_contribution = total_unvisited_distance / (1 + sum(distance_matrix[node][j] for j in unvisited_nodes))
+        immediate_distance = distance_matrix[current_node][node]
 
-        # Score calculation emphasizing local distance with the new decay factor
-        score = 0.6 * local_distance + 0.4 * decay_factor * global_contribution
+        # Estimate future distance to remaining nodes including return trip
+        future_distance = 0
+        temp_node = node
+        remaining_nodes = unvisited_nodes.copy()
+        remaining_nodes.remove(temp_node)
 
-        # Selecting the node with the minimum score
-        if score < min_score:
-            min_score = score
+        while remaining_nodes:
+            next_temp_node = min(remaining_nodes, key=lambda x: distance_matrix[temp_node][x])
+            future_distance += distance_matrix[temp_node][next_temp_node]
+            temp_node = next_temp_node
+            remaining_nodes.remove(next_temp_node)
+
+        return_distance = distance_matrix[temp_node][destination_node]
+        future_distance += return_distance
+
+        # Central node proximity factor with penalty for distance from center
+        distance_from_center_penalty = max(0, distance_matrix[node][center_node] - 1)
+
+        # Combined score
+        combined_score = (immediate_distance * immediate_weight) + (
+                    future_distance * future_weight) + distance_from_center_penalty
+
+        if combined_score < best_combined_score:
+            best_combined_score = combined_score
             next_node = node
 
     return next_node

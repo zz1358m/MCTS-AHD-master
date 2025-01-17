@@ -1,6 +1,5 @@
 import torch
 
-
 def utility(train_x, train_y, best_x, best_y, test_x, mean_test_y, std_test_y, cost_test_y, budget_used, budget_total):
     # Calculate potential improvement using logarithmic scaling
     potential_improvement = torch.log(torch.clamp(mean_test_y - best_y + 1e-9, min=1e-9))  # Avoid log(0)

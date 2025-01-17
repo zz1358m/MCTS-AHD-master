@@ -1,50 +1,39 @@
 import numpy as np
 
+
 def heuristics_v2(prize, weight):
     n = len(prize)
     m = weight.shape[1]
-    heuristics_matrix = np.zeros(n)
 
-    current_solution = np.random.randint(2, size=n)
-    current_value = np.sum(prize[current_solution == 1])
-    current_weight = np.sum(weight[current_solution == 1], axis=0)
+    # Calculate prize-to-weight ratios
+    ratio = prize / (np.sum(weight, axis=1) + 1e-5)  # Avoid division by zero
 
-    initial_temperature = 10.0
-    cooling_rate = 0.95
-    min_temperature = 0.1
+    # Cumulative total prize for diminishing returns adjustment
+    total_prize_collected = np.sum(prize)
+    diminishing_returns = 1 + (total_prize_collected / np.max(prize + 1e-5))  # Adjust based on total collected
 
-    temperature = initial_temperature
+    # Score calculation with diminishing returns normalization
+    score = (ratio / diminishing_returns) * (1 / (np.max(weight, axis=1) - np.min(weight, axis=1) + 1e-5))
 
-    while temperature > min_temperature:
-        new_solution = current_solution.copy()
-        for _ in range(np.random.randint(1, 3)):  # Random number of flips for exploration
-            mutate_index = np.random.randint(n)
-            new_solution[mutate_index] = 1 - new_solution[mutate_index]  # Flip bit
+    # Sort items based on score in descending order
+    sorted_indices = np.argsort(-score)
 
-        new_weight = np.sum(weight[new_solution == 1], axis=0)
-        if np.all(new_weight <= 1):
-            new_value = np.sum(prize[new_solution == 1])
-            adjustment_noise = np.random.normal(0, 0.1 * (1 / (1 + np.mean(weight[new_solution == 1])))) if np.any(new_solution) else 0
-            adjusted_value = new_value + adjustment_noise
+    heuristics = np.zeros(n)
+    selected_weights = np.zeros(m)
 
-            if adjusted_value > current_value or np.random.rand() < np.exp((adjusted_value - current_value) / temperature):
-                current_solution = new_solution
-                current_value = new_value
-                current_weight = new_weight
-                
-        temperature *= cooling_rate
+    # Greedily select items based on sorted order with partial inclusion
+    for i in sorted_indices:
+        if np.all(selected_weights + weight[i] <= 1):  # Check if the entire item can be added
+            heuristics[i] = prize[i]
+            selected_weights += weight[i]  # Update selected weights
+        else:
+            remaining_capacity = 1 - selected_weights
+            if np.any(remaining_capacity < weight[i]):
+                partial_selection = np.minimum(remaining_capacity, weight[i])
+                heuristics[i] = prize[i] * np.sum(partial_selection) / np.sum(weight[i])
+                selected_weights += partial_selection
 
-    for i in range(n):
-        if np.all(weight[i] <= 1):
-            weight_max = np.max(weight[i])
-            if weight_max > 0:
-                heuristics_matrix[i] = (prize[i] / weight_max) ** 2  # Quadratic scaling for fitness
-
-    max_weights = np.max(weight, axis=1)
-    penalties = np.clip(1 - max_weights, 0, None)
-    heuristics_matrix *= penalties
-
-    diversity_factor = np.std(prize[current_solution == 1]) if np.any(current_solution) else 0
-    heuristics_matrix += diversity_factor * (1 - np.mean(weight, axis=1))
+    # Normalize heuristics
+    heuristics_matrix = heuristics / np.sum(heuristics) if np.sum(heuristics) > 0 else heuristics
 
     return heuristics_matrix
