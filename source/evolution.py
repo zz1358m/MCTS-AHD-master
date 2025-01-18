@@ -9,7 +9,6 @@ input = lambda: ...
 class Evolution():
 
     def __init__(self, api_endpoint, api_key, model_LLM, debug_mode, prompts, **kwargs):
-        # -------------------- RZ: use local LLM --------------------
         assert 'use_local_llm' in kwargs
         assert 'url' in kwargs
         self._use_local_llm = kwargs.get('use_local_llm')
