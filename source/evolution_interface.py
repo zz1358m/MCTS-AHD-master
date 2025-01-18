@@ -14,7 +14,6 @@ import concurrent.futures
 class InterfaceEC():
     def __init__(self, m, api_endpoint, api_key, llm_model, debug_mode, interface_prob, select, n_p, timeout, use_numba,
                  **kwargs):
-        # -------------------- RZ: use local LLM --------------------
         assert 'use_local_llm' in kwargs
         assert 'url' in kwargs
         # -----------------------------------------------------------
