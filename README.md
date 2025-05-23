@@ -2,7 +2,7 @@
 
 #### May 23th Update
 
-We implement the Mountain_car optimization task with heuristics, See ./problem for details (please install the gym package to run this experiment).
+We implement the Mountain_car optimization task with heuristics. See ./problem for details (please install the gym package to run this experiment).
 
 ### MCTS-AHD
 
