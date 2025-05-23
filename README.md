@@ -1,8 +1,10 @@
 ## [ICML2025] Implementation of Paper: Monte Carlo Tree Search for Comprehensive Exploration in LLM-Based Automatic Heuristic Design [Arxiv preprint](https://arxiv.org/pdf/2501.08603)
 
+#### May 23th Update
+
+We implement the Mountain_car optimization task with heuristics, See ./problem for details (please install the gym package to run this experiment).
+
 ### MCTS-AHD
-
-
 
 MCTS-AHD employs a Monte Carlo Tree Search (MCTS) for LLM-based heuristic evolution while preserving all LLM-generated heuristics in a tree structure. MCTS helps to comprehensively explore the space of heuristic functions and maintain the focus on better-performing ones. Moreover, as a structured data structure, the MCTS tree records the evolution history of heuristics, thus providing organized samples for heuristic evolution and LLMs' reasoning.
 
