@@ -1,0 +1,10 @@
+The function has three inputs (args) and one output as follows:
+Args:
+    pos: Car's position, a float ranges between [-1.2, 0.6].
+    v: Car's velocity, a float ranges between [-0.07, 0.07].
+    last_action: Car's next move, a int ranges between [0, 1, 2].
+Return:
+     An integer representing the selected action for the car.
+     0: accelerate to left
+     1: don't accelerate
+     2: accelerate to right

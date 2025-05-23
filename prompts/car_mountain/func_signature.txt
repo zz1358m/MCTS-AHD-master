@@ -1,0 +1,1 @@
+def choose_action(pos: float, v: float, last_action: int) -> int:
